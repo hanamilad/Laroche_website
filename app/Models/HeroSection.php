@@ -2,22 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 
-class Category extends Model
+class HeroSection extends Model
 {
-    use HasFactory;
+    protected $table = 'hero_sections';
 
-    protected $fillable = ['name', 'slug', 'description', 'image_path'];
+    protected $fillable = [
+        'section_key',
+        'title',
+        'subtitle',
+        'body',
+        'image_path',
+        'image_alt',
+        'image_position',
+        'cta_text',
+        'cta_url',
+        'display_order',
+        'is_active'
+    ];
 
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
-
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
     protected static function booted()
     {
         // عند الحذف

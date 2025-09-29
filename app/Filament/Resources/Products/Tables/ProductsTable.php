@@ -8,8 +8,8 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Filters\SelectFilter;
 
 class ProductsTable
@@ -23,9 +23,6 @@ class ProductsTable
                     ->label('Image')
                     ->html()
                     ->formatStateUsing(fn($state) => "<img src='{$state}' style='height:40px; width:40px; border-radius:50%; object-fit:cover;'>"),
-
-
-
                 // ✅ اسم المنتج
                 TextColumn::make('name')
                     ->label('Name')

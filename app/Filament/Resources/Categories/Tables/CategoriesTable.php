@@ -6,6 +6,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -29,6 +30,11 @@ class CategoriesTable
                     ->label('Slug')
                     ->sortable()
                     ->searchable(),
+                ImageColumn::make('image_path')
+                    ->label('Image')
+                    ->disk('public')
+                    ->circular()
+                    ->size(40),
 
                 TextColumn::make('created_at')
                     ->label('Created')
@@ -38,7 +44,7 @@ class CategoriesTable
             ->filters([
                 Filter::make('with_products')
                     ->label('Has Products')
-                    ->query(fn ($query) => $query->has('products')),
+                    ->query(fn($query) => $query->has('products')),
             ])
             ->recordActions([
                 ViewAction::make(),

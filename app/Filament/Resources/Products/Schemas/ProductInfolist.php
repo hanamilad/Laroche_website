@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Products\Schemas;
 
 use Filament\Forms\Components\Placeholder;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Storage;
 
@@ -34,8 +35,6 @@ class ProductInfolist
                         )->join('')
                     )
                     ->html(),
-
-
                 Placeholder::make('created_at')->label('Created At')->content(fn($record) => $record->created_at),
                 Placeholder::make('updated_at')->label('Updated At')->content(fn($record) => $record->updated_at),
             ]);
