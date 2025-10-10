@@ -3,19 +3,48 @@
 namespace App\Filament\Widgets;
 
 use App\Models\AdminLog;
-use Filament\Widgets\Widget;
+use Filament\Widgets\TableWidget;
+use Filament\Tables;
+use Illuminate\Database\Eloquent\Builder;
 
-
-class AdminActivity extends Widget
+class AdminActivity extends TableWidget
 {
-    protected string $view = 'filament.widgets.admin-activity';
-   protected int | string | array $columnSpan = 'full'; // لو عايزها تاخد عرض أكبر
+    protected static ?int $sort = 2;
+    protected int|string|array $columnSpan = 'full';
 
-    public $logs;
-
-    public function mount(): void
+    protected function getTableQuery(): Builder
     {
-        $this->logs = AdminLog::latest()->take(10)->get();
+        return AdminLog::query()->latest()->take(10);
+    }
+
+    protected function getTableColumns(): array
+    {
+        return [
+            Tables\Columns\TextColumn::make('admin.name')
+                ->label('EmployeeName')
+                ->default('EmployeeName')
+                ->searchable()
+                ->sortable(),
+
+            Tables\Columns\TextColumn::make('action')
+                ->label('Action')
+                ->badge()
+                ->color(fn (string $state): string => match ($state) {
+                    'create' => 'success',
+                    'update' => 'warning',
+                    'delete' => 'danger',
+                    default => 'info',
+                })
+                ->formatStateUsing(fn ($state) => ucfirst($state)),
+
+            Tables\Columns\TextColumn::make('model')
+                ->label('Model')
+                ->formatStateUsing(fn ($state) => class_basename($state))
+                ->searchable(),
+
+            Tables\Columns\TextColumn::make('created_at')
+                ->label('الوقت')
+                ->dateTime('Y-m-d H:i')
+                ->sortable()];
     }
 }
-

@@ -8,7 +8,6 @@ class AdminLogObserver
 {
     protected function adminId(): ?int
     {
-        // استخدام guard الافتراضي web في Breeze
         return auth('web')->id();
     }
 
@@ -27,16 +26,16 @@ class AdminLogObserver
 
     public function created($model)
     {
-        $this->log('إضافة', $model);
+        $this->log('create', $model);
     }
 
     public function updated($model)
     {
-        $this->log('تعديل', $model);
+        $this->log('update', $model);
     }
 
     public function deleted($model)
     {
-        $this->log('حذف', $model);
+        $this->log('delete', $model);
     }
 }

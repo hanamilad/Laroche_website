@@ -1,23 +1,26 @@
 <?php
 
+namespace App\Filament\Pages;
+
 use App\Filament\Widgets\AdminActivity;
 use App\Filament\Widgets\OrdersSummary;
-use Filament\Pages\Page;
+use Filament\Pages\Dashboard as BaseDashboard;
 
-class Dashboard extends Page
+class Dashboard extends BaseDashboard
 {
-    protected string $view = 'filament.pages.dashboard';
-
-    protected function getWidgets(): array
+    public function getWidgets(): array
     {
         return [
-            OrdersSummary::class,  // تظهر أول
-            AdminActivity::class,  // تظهر بعده
+            OrdersSummary::class,
+            AdminActivity::class,
         ];
     }
 
-    protected function getHeaderWidgets(): array
+    public function getWidgetsLayout(): array
     {
-        return []; // خليها فاضية
+        return [
+            [OrdersSummary::class],
+            [AdminActivity::class],
+        ];
     }
 }

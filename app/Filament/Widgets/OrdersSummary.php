@@ -7,6 +7,7 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class OrdersSummary extends StatsOverviewWidget
 {
+    protected static ?int $sort = 1;
     protected function getStats(): array
     {
         return [
