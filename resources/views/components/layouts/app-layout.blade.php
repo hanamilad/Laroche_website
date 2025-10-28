@@ -9,6 +9,7 @@
 </head>
 <body class="bg-gray-100">
     <header>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
         @include('livewire.layout.navigation')
         {{--  <livewire:header-cart />  --}}
     </header>
@@ -18,7 +19,7 @@
     </main>
 
     <footer class="text-center py-4">
-        &copy; 2025 My E-Commerce
+        <livewire:site-info />
     </footer>
 
     @livewireScripts
