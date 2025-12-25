@@ -22,8 +22,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 
         {{-- ✅ Preload لأهم الملفات --}}
-        <link rel="preload" as="style" href="{{ mix('css/app.css', 'public') }}">
-        <link rel="preload" as="script" href="{{ mix('js/app.js', 'public') }}">
+        {{-- <link rel="preload" as="style" href="{{ mix('css/app.css', 'public') }}"> --}}
+        {{-- <link rel="preload" as="script" href="{{ mix('js/app.js', 'public') }}"> --}}
 
         {{-- ✅ التحميل الفعلي --}}
         @vite(['resources/css/app.css', 'resources/js/app.js'])
